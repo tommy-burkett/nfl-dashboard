@@ -1,0 +1,57 @@
+version = 1
+revision = 1
+requires-python = ">=3.12"
+
+[[package]]
+name = "matplotlib"
+version = "3.10.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/ea/61/03e9d2d3f0c3e5c1e3570427c31e1b1c991b89b951b7463fc09c88a4066/matplotlib-3.10.0.tar.gz", hash = "sha256:2f3f59999f283cba35e9a37b27c76f72f388f94c84d0c39d6ed7e49d96cc8f09", size = 12902487 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/0b/72/508e4c9ca87028da9f79cf40a1a7db4743463c5786ebf606ba1783a8d96c/matplotlib-3.10.0-cp39-cp39-manylinux1_x86_64.whl", hash = "sha256:6b4f20ac003d19a9f39fc1c8d479a28f72232cc83c5412ca4eab0866172c9be1", size = 10048657 },
+]
+
+[[package]]
+name = "dash"
+version = "2.18.2"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/81/4b/14eaf76c5155b8e736f10d63c5cf62681c87653f0a2f98c3f4d951e9fdfd/dash-2.1.0.tar.gz", hash = "sha256:276f9d6ec8ee9e4644e1bb8c8b2c61d0ff527c789ffb5e906c8f9c39f7c4f5bc", size = 133013 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/c1/90/8f735f8fbe27a6a0ac6a4a3f7f7b1e99bb2e6a5c687ec22e2b05f73e2e25/dash-2.1.0-py3-none-any.whl", hash = "sha256:22f5b1e4f32cd7792e6d76021d44cc3fd6f20c9f5f057bc2d0bcdd12677ed3ea", size = 94696 },
+]
+
+[[package]]
+name = "plotly"
+version = "6.0.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/6e/62/3ab7428b4d1b7d5b0a064f21fa073e3184ca5b8a74e02ef3fbb745f10fe1/plotly-5.0.0.tar.gz", hash = "sha256:1cf6219737e4675e1b46c963407f5d83b8d35cd582828f8e4b96b489d5a4b706", size = 4899138 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/3c/eb/27ed290a1fc8316d197f6fa82d23d34c8322d50d10c8c106b25fda6d4c84/plotly-5.0.0-py3-none-any.whl", hash = "sha256:3aeb1b3ecb125e6f84c01bbd94c8b635d00d6e74770e3f4c72899cc98d2ea3a5", size = 1423298 },
+]
+
+[[package]]
+name = "pandas"
+version = "2.2.3"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/a6/d1/7ed20983ff7e8fe2a832db93c8c3f8573d6402d0d7e43b6fdbf4e79bcae8/pandas-1.3.0.tar.gz", hash = "sha256:b30356e1f83fd7b772c62b36535c6c2a24a9cf5bb8edb52e530a21966de349a6", size = 2387115 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/10/ea/aa06e0a0812d8f564cb87b1d9b13201f42fc9b876660a99944f926229b25/pandas-1.3.0-cp39-cp39-manylinux1_x86_64.whl", hash = "sha256:fd8b5b0eaec657d68a7ab5cbdf2b0fd98b88f028d6f9eb48baf3d12a702d2de8", size = 11059777 },
+]
+
+[[package]]
+name = "numpy"
+version = "2.2.4"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/79/c2/3c94a9a8fbd5cd78134f20ad726e03c7e02e38313c49bc55fa87c50b0c3a/numpy-1.21.0.tar.gz", hash = "sha256:8f7bc988e36d90523525c875d35bb6e8b87ebea44244b89c017bb623504618cc", size = 6548505 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/f9/ff/1d08b0f3178a87b3a9136c9143c4fe877b2e8c68c43178c8b7984e3b2342/numpy-1.21.0-cp39-cp39-manylinux1_x86_64.whl", hash = "sha256:ff227457d8469cc1e5ab89303b3f1ab26727a823e1237276a61b1895cb20b0b", size = 9790557 },
+]
+
+[[package]]
+name = "seaborn"
+version = "0.11.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/11/35/9031fba11f7b235170fd3565bbdd9257be1b7e234db6e17000d229e06e58/seaborn-0.11.0.tar.gz", hash = "sha256:fe110b2f8851770fe648f77549c17d37403e406649d2e5f307c99b2b5fc01e76", size = 1117401 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/5e/34/83ca86d2b7d4224d54f2d264c8b0ca42c69ffde7b6b5bb2d8f478d8a56d8/seaborn-0.11.0-py3-none-any.whl", hash = "sha256:9332fa37677514915c6feac9ae9923aeabf91a211f3f8c2b4d68a9be937ada9d", size = 247693 },
+]
