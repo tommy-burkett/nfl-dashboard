@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual Environments
+.venv/
+env/
+venv/
+*.env
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Operating System Files
+Thumbs.db
+ehthumbs.db
+
+# OneDrive sync folder
+OneDrive/
+
+# Data Files
+data/raw/
+*.csv
+*.xlsx
