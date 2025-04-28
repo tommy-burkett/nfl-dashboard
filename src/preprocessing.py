@@ -129,4 +129,4 @@ def combine_dataframes(data_dir: str, output_path: str) -> None:
 
 # Main
 if __name__ == "__main__":
-    combine_dataframes('data', 'data/combined_nfl_data.csv')
+    combine_dataframes('data', 'data/2020-2024_combined_nfl_data.csv')
