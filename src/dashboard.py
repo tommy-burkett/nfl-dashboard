@@ -48,6 +48,7 @@ team_colors = {
     "Tampa Bay Buccaneers": "#D50A0A",
     "Tennessee Titans": "#4B92DB",
     "Washington Commanders": "#420D09",
+    "Washington Football Team": "#420D09",
 }
 
 # Initialize the Dash app
