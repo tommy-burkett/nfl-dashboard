@@ -73,8 +73,10 @@ def create_layout(app: Dash) -> None:
         dcc.Dropdown(
             id='side-dropdown',
             options=[
-                {'label': 'Offense', 'value': 'Offense'},
-                {'label': 'Defense', 'value': 'Defense'}
+                {'label': 'Offense', 
+                 'value': 'Offense'},
+                {'label': 'Defense', 
+                 'value': 'Defense'}
             ],
             value='Offense',
             clearable=False,
@@ -83,7 +85,6 @@ def create_layout(app: Dash) -> None:
                    }
             ),
         
-
         # Add a break in the page for spacing
         html.Br(),
 
@@ -93,7 +94,9 @@ def create_layout(app: Dash) -> None:
             html.Div([
                 html.H3("Points Overview"),
                 html.Div([
-                    html.Button(str(year), id=f'year-button-{year}', n_clicks=0)
+                    html.Button(str(year), 
+                                id=f'year-button-{year}', 
+                                n_clicks=0)
                     for year in all_years
                 ], style={'display': 'flex', 
                           'justifyContent': 'center',
@@ -102,13 +105,16 @@ def create_layout(app: Dash) -> None:
                           'margin': 'auto'
                           }),
                 dcc.Graph(id='bar-graph'),
-            ], style={'width': '48%', 'padding': '0 1%'}),
+            ], style={'width': '48%', 
+                      'padding': '0 1%'}),
 
             # Second graph layout
             html.Div([
                 html.H3("Team Performance"),
                 html.Div([
-                    html.Button(str(year), id=f'year-button-2-{year}', n_clicks=0)
+                    html.Button(str(year), 
+                                id=f'year-button-2-{year}', 
+                                n_clicks=0)
                     for year in all_years
                 ], style={'display': 'flex', 
                           'justifyContent': 'center',
@@ -117,8 +123,10 @@ def create_layout(app: Dash) -> None:
                           'margin': 'auto'
                           }),
                 dcc.Graph(id='scatter-plot')
-                ], style={'width': '48%', 'padding': '0 1%'})
-        ], style={'display': 'flex', 'justify-content': 'space-between'}),
+                ], style={'width': '48%', 
+                          'padding': '0 1%'})
+        ], style={'display': 'flex', 
+                  'justify-content': 'space-between'}),
 
         # Add a break in the page for spacing
         html.Br(),
@@ -127,7 +135,9 @@ def create_layout(app: Dash) -> None:
             html.Div([
                 html.H3("Title 3"),
                 html.Div([
-                    html.Button(str(year), id=f'year-button-3-{year}', n_clicks=0)
+                    html.Button(str(year), 
+                                id=f'year-button-3-{year}', 
+                                n_clicks=0)
                     for year in all_years
                 ], style={'display': 'flex', 
                           'justifyContent': 'center',
@@ -136,7 +146,36 @@ def create_layout(app: Dash) -> None:
                           'margin': 'auto'
                           }),
                 dcc.Graph(id='bar-graph-2')
-            ], style={'width': '60%', 'margin': 'auto'}),
+            ], style={'width': '60%', 
+                      'margin': 'auto'}),
+
+        html.Div([
+            html.P("This dashboard is created using Dash and Plotly. "
+                "Created by Tommy Burkett, 2025", 
+                style={'textAlign': 'center', 
+                       'fontSize': '15px', 
+                       'margin': '20px 0'}),
+            
+            # Source text with links
+            html.P("Source: NFL Data from 2020-2024 ",
+                style={'textAlign': 'center', 
+                       'fontSize': '15px', 
+                       'margin': '20px 0'}),
+            
+            html.P([
+                html.A("Pro Football Reference", 
+                       href="https://www.pro-football-reference.com/", 
+                       target="_blank"),
+                " & ",
+                html.A("NFL.com", 
+                       href="https://www.nfl.com/stats/", 
+                       target="_blank")
+            ], style={'textAlign': 'center', 
+                      'fontSize': '15px', 
+                      'margin': '20px 0'})
+        ], style={'textAlign': 'center', 
+                  'fontSize': '15px', 
+                  'color': '#555'})
     ])
     
 # Callbacks
