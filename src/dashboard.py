@@ -91,7 +91,7 @@ def create_layout(app: Dash) -> None:
         html.Div([
             # First graph layout
             html.Div([
-                html.H3("Title"),
+                html.H3("Points Overview"),
                 html.Div([
                     html.Button(str(year), id=f'year-button-{year}', n_clicks=0)
                     for year in all_years
@@ -99,7 +99,8 @@ def create_layout(app: Dash) -> None:
                           'justifyContent': 'center',
                           'flexWrap': 'wrap',
                           'gap': '10px',
-                          'margin': 'auto'}),
+                          'margin': 'auto'
+                          }),
                 dcc.Graph(id='bar-graph'),
             ], style={'width': '48%', 'padding': '0 1%'}),
 
@@ -113,7 +114,8 @@ def create_layout(app: Dash) -> None:
                           'justifyContent': 'center',
                           'flexWrap': 'wrap',
                           'gap': '10px',
-                          'margin': 'auto'}),
+                          'margin': 'auto'
+                          }),
                 dcc.Graph(id='scatter-plot')
                 ], style={'width': '48%', 'padding': '0 1%'})
         ], style={'display': 'flex', 'justify-content': 'space-between'}),
@@ -131,11 +133,64 @@ def create_layout(app: Dash) -> None:
                           'justifyContent': 'center',
                           'flexWrap': 'wrap',
                           'gap': '10px',
-                          'margin': 'auto'}),
+                          'margin': 'auto'
+                          }),
                 dcc.Graph(id='bar-graph-2')
             ], style={'width': '60%', 'margin': 'auto'}),
-        ])
+    ])
     
+# Callbacks
+@callback(
+    Output('bar-graph', 'figure'),
+    Input('side-dropdown', 'value'),
+    [Input(f'year-button-{year}', 'n_clicks') for year in all_years]
+)
+def update_bar(side: str,
+               *n_clicks: int
+              ) -> go.Figure:
+    
+    # Get the year from the button that was clicked
+    if not any(n_clicks):
+        selected_year = all_years[-1]
+    else:
+        max_clicks = np.argmax(n_clicks)
+        selected_year = all_years[max_clicks]
+    # Filter dataframe based on selected year and side
+    df_filtered = df[(df['Year'] == selected_year) & (df['Side'] == side)]
+
+    # Differentiate between offense and defense
+    if side == 'Offense':
+        x = 'Team'
+        y = 'Points For'
+        title = f'Offensive Points Scored by Team ({selected_year})'
+    else:
+        x = 'Team'
+        y = 'Points Allowed'
+        title = f'Defensive Points Allowed by Team ({selected_year})'
+
+    # Create the bar plot
+    fig = px.bar(df_filtered,
+                 x=x, 
+                 y=y, 
+                 color='Team',
+                 color_discrete_map=team_colors,
+                 title=title
+                 )
+    
+    # Update the layout
+    fig.update_layout(xaxis_title=x,
+                      yaxis_title=y,
+                      legend_title='Team',
+                      title_x=0.5,
+                      title_y=0.95,
+                      xaxis_tickangle=-90,
+                      showlegend=False,
+                      height=500
+                     )
+    
+    return fig
+
+
 # Callbacks
 @callback(
     Output('scatter-plot', 'figure'),
@@ -165,19 +220,24 @@ def update_scatter(side: str,
         y = 'Points Allowed'
         title = f'Defensive Total Yards vs Points Allowed ({selected_year})'
 
+    # Create the scatter plot
     fig = px.scatter(df_filtered,
-                        x=x,
-                        y=y,
-                        color='Team',
-                        hover_name='Team',
-                        color_discrete_map=team_colors,
-                        title=title
-                        )
+                     x=x,
+                     y=y,
+                     color='Team',
+                     hover_name='Team',
+                     color_discrete_map=team_colors,
+                     title=title
+                    )
+    
+    # Update the layout
     fig.update_layout(xaxis_title=x,
                       yaxis_title=y,
                       legend_title='Team',
                       title_x=0.5,
-                      title_y=0.95
+                      title_y=0.95,
+                      showlegend=False,
+                      height=500
                      )
     
     return fig
