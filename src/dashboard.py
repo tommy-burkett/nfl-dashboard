@@ -48,7 +48,6 @@ team_colors = {
     "Tampa Bay Buccaneers": "#D50A0A",
     "Tennessee Titans": "#4B92DB",
     "Washington Commanders": "#420D09",
-    "Washington Football Team": "#420D09",
 }
 
 # Initialize the Dash app
@@ -134,7 +133,7 @@ def create_layout(app: Dash) -> None:
 
             # Third graph layout
             html.Div([
-                html.H3("Title 3"),
+                html.H3("Other Advanced Stats"),
                 html.Div([
                     html.Button(str(year), 
                                 id=f'year-button-3-{year}', 
@@ -282,5 +281,53 @@ def update_scatter(side: str,
     
     return fig
 
-if __name__ == "__main__":
-    run_app()
+# Callbacks
+@callback(
+    Output('bar-graph-2', 'figure'),
+    Input('side-dropdown', 'value'),
+    [Input(f'year-button-3-{year}', 'n_clicks') for year in all_years]
+)
+def update_bar(side: str,
+               *n_clicks: int
+              ) -> go.Figure:
+    
+    # Get the year from the button that was clicked
+    if not any(n_clicks):
+        selected_year = all_years[-1]
+    else:
+        max_clicks = np.argmax(n_clicks)
+        selected_year = all_years[max_clicks]
+    # Filter dataframe based on selected year and side
+    df_filtered = df[(df['Year'] == selected_year) & (df['Side'] == side)]
+
+    # Differentiate between offense and defense
+    if side == 'Offense':
+        x = 'Team'
+        y = 'Yards Per Play'
+        title = f'Yards Per Play by Team ({selected_year})'
+    else:
+        x = 'Team'
+        y = 'Total Turnovers'
+        title = f'Forced Turnovers by Team ({selected_year})'
+
+    # Create the bar plot
+    fig = px.bar(df_filtered,
+                 x=x, 
+                 y=y, 
+                 color='Team',
+                 color_discrete_map=team_colors,
+                 title=title
+                 )
+    
+    # Update the layout
+    fig.update_layout(xaxis_title=x,
+                      yaxis_title=y,
+                      legend_title='Team',
+                      title_x=0.5,
+                      title_y=0.95,
+                      xaxis_tickangle=-90,
+                      showlegend=False,
+                      height=500
+                     )
+    
+    return fig
