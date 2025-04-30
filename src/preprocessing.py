@@ -84,6 +84,7 @@ def clean_data(filepath: str,
 
     # Add the year and side columns
     df['Year'] = year
+    df['Year'] = df['Year'].astype(int)
     df['Side'] = side
     
     return df

@@ -21,7 +21,7 @@ team_colors = {
     "Baltimore Ravens": "#241773",
     "Buffalo Bills": "#00338D",
     "Carolina Panthers": "#0085CA",
-    "Chicago Bears": "#0B162A",
+    "Chicago Bears": "#002244",
     "Cincinnati Bengals": "#FB4F14",
     "Cleveland Browns": "#FF3C00",
     "Dallas Cowboys": "#003594",
@@ -47,7 +47,7 @@ team_colors = {
     "Seattle Seahawks": "#69BE28",
     "Tampa Bay Buccaneers": "#D50A0A",
     "Tennessee Titans": "#4B92DB",
-    "Washington Commanders": "#773141",
+    "Washington Commanders": "#420D09",
 }
 
 # Initialize the Dash app
@@ -65,7 +65,7 @@ def create_layout(app: Dash) -> None:
     app.layout = html.Div([
         html.H1("NFL Dashboard", 
                 style={'textAlign': 'center',
-                       'fontSize': '40px',
+                       'fontSize': '60px',
                        'margin': '20px 0'
                        }),
 
@@ -87,9 +87,9 @@ def create_layout(app: Dash) -> None:
         # Add a break in the page for spacing
         html.Br(),
 
-        # Format the graphs
+        # Set up the layout for the graphs
         html.Div([
-            # First graph
+            # First graph layout
             html.Div([
                 html.H3("Title"),
                 html.Div([
@@ -103,9 +103,9 @@ def create_layout(app: Dash) -> None:
                 dcc.Graph(id='bar-graph'),
             ], style={'width': '48%', 'padding': '0 1%'}),
 
-            # Second graph
+            # Second graph layout
             html.Div([
-                html.H3("Title 2"),
+                html.H3("Team Performance"),
                 html.Div([
                     html.Button(str(year), id=f'year-button-2-{year}', n_clicks=0)
                     for year in all_years
@@ -114,14 +114,14 @@ def create_layout(app: Dash) -> None:
                           'flexWrap': 'wrap',
                           'gap': '10px',
                           'margin': 'auto'}),
-                dcc.Graph(id='scatter-graph')
+                dcc.Graph(id='scatter-plot')
                 ], style={'width': '48%', 'padding': '0 1%'})
         ], style={'display': 'flex', 'justify-content': 'space-between'}),
 
         # Add a break in the page for spacing
         html.Br(),
 
-            # Third graph
+            # Third graph layout
             html.Div([
                 html.H3("Title 3"),
                 html.Div([
@@ -136,5 +136,51 @@ def create_layout(app: Dash) -> None:
             ], style={'width': '60%', 'margin': 'auto'}),
         ])
     
+# Callbacks
+@callback(
+    Output('scatter-plot', 'figure'),
+    Input('side-dropdown', 'value'),
+    [Input(f'year-button-2-{year}', 'n_clicks') for year in all_years]
+)
+def update_scatter(side: str,
+                   *n_clicks: int
+                  ) -> go.Figure:
+    
+    # Get the year from the button that was clicked
+    if not any(n_clicks):
+        selected_year = all_years[-1]
+    else:
+        max_clicks = np.argmax(n_clicks)
+        selected_year = all_years[max_clicks]
+    # Filter dataframe based on selected year and side
+    df_filtered = df[(df['Year'] == selected_year) & (df['Side'] == side)]
+
+    # Differentiate between offense and defense
+    if side == 'Offense':
+        x = 'Passing Yards'
+        y = 'Rushing Yards'
+        title = f'Offensive Passing Yards vs Rushing Yards ({selected_year})'
+    else:
+        x = 'Total Yards'
+        y = 'Points Allowed'
+        title = f'Defensive Total Yards vs Points Allowed ({selected_year})'
+
+    fig = px.scatter(df_filtered,
+                        x=x,
+                        y=y,
+                        color='Team',
+                        hover_name='Team',
+                        color_discrete_map=team_colors,
+                        title=title
+                        )
+    fig.update_layout(xaxis_title=x,
+                      yaxis_title=y,
+                      legend_title='Team',
+                      title_x=0.5,
+                      title_y=0.95
+                     )
+    
+    return fig
+
 if __name__ == "__main__":
     run_app()
