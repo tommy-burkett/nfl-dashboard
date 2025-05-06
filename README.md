@@ -3,3 +3,5 @@ This project uses National Football League data to create an interactive dashboa
  
 The visualizations in this dashboard allow for quick and easy comparisons between teams across each of the last five seasons, saving fans, like me, from having to scroll through dense and disorganized spreadsheets. Additionally, for those who play Fantasy Football each season, this interactive dashboard will highlight teams that perform well offensively, which will help guide you through your fantasy draft and in-season trades. Further, through these visualizations, users can uncover team trends and patterns due to the project’s five-year data range. Lastly, this project prioritizes reproducibility, so this dashboard will be updated at the end of each season, always displaying the previous five-year interval. 
 
+The data utilized for this project consists of National Football League play-by-play data summed up across an entire 17-game season. This data was aggregated by Pro Football Reference, which is a reliable website for NFL data. Each row in the dataset represents one of the 32 NFL teams for that season. Link to data source: https://www.pro-football-reference.com/ 
+
