@@ -16,6 +16,8 @@ The data utilized for this project consists of National Football League play-by-
 `writeup/`
 - This folder contains a six page PDF file that outlines the overall project goals, the data and methods used, a demonstration of the dashboard, and the references utilized to create this project.
 
+`main.py`
+- The file used to run the app.
 ---
 #### How to Run the Dashboard
 - CD the directory in your terminal 
