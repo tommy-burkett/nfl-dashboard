@@ -18,5 +18,6 @@ The data utilized for this project consists of National Football League play-by-
 
 ---
 #### How to Run the Dashboard
+- CD the directory in your terminal 
 - To launch the dashboard locally, run `python main.py` in your terminal. The app should then be available at http://127.0.0.1:8050/
 
