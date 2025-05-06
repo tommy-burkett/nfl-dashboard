@@ -6,5 +6,6 @@ The visualizations in this dashboard allow for quick and easy comparisons betwee
 The data utilized for this project consists of National Football League play-by-play data summed up across an entire 17-game season. This data was aggregated by Pro Football Reference, which is a reliable website for NFL data. Each row in the dataset represents one of the 32 NFL teams for that season. Link to data source: https://www.pro-football-reference.com/ 
 
 ### Files Included
-`data/` folder
+`data/` 
+- This folder contains two separate folders. The first `input_data/` folder holds Offensive and Defensive NFL season statistics from 2020-2024, directly downloaded from the aforementioned data source. The `cleaned_data/` folder holds the cleaned and combined statistics from the five NFL seasons. The cleaned data is then used to create the dashboard.  
 
