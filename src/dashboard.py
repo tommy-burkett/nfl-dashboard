@@ -66,8 +66,19 @@ def create_layout(app: Dash) -> None:
     app.layout = html.Div([
         html.H1("NFL Dashboard", 
                 style={'textAlign': 'center',
-                       'fontSize': '60px',
+                       'fontSize': '70px',
                        'margin': '20px 0'
+                       }),
+        html.P("Explore Offensive and Defensive NFL statistics from five NFL seasons.",
+                style={'textAlign': 'center', 
+                       'fontSize': '15px', 
+                       'marginTop': '2px'
+                       }),
+
+        html.P("Use the dropdown to select the side of the ball (Offense/Defense).",
+                style={'textAlign': 'center', 
+                       'fontSize': '15px', 
+                       'margin': '10px 0'
                        }),
 
         html.Label("Select Side of the Ball (Offense/Defense):"),
