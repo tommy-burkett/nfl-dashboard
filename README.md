@@ -10,3 +10,12 @@ The data utilized for this project consists of National Football League play-by-
 `data/` 
 - This folder contains two separate folders. The first `input_data/` folder holds Offensive and Defensive NFL season statistics from 2020-2024, directly downloaded from the aforementioned data source. The `cleaned_data/` folder holds the cleaned and combined statistics from the five NFL seasons. The cleaned data is then used to create the dashboard.  
 
+`src/`
+- This folder contains the `preprocessing.py` and `dashboard.py` files. The `preprocessing.py` file cleans the raw data gathered and returns the clean data found in the `data/cleaned_data/` folder. The `dashboard.py` file has the source code for creating and formatting the dashboard.
+
+`writeup/`
+- This folder contains a six page PDF file that outlines the overall project goals, the data and methods used, a demonstration of the dashboard, and the references utilized to create this project.
+
+---
+#### How to Run the Dashboard
+- To launch the dashboard locally, run `python main.py` in your terminal. The app should then be available at http://127.0.0.1:8050/
