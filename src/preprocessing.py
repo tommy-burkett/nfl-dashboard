@@ -89,7 +89,7 @@ def clean_data(filepath: str,
     
     return df
 
-def combine_dataframes(data_dir: str, 
+def combine_dataframes(data_directory: str, 
                        output_path: str
                        ) -> None:
     
@@ -97,24 +97,24 @@ def combine_dataframes(data_dir: str,
         Combine all of the dataframes in the directory into one dataframe and save it to a CSV file.
 
         Args:
-            directory (str): The path to the directory containing the NFL data files.
+            data_directory (str): The path to the directory containing the NFL data files.
             output_path (str): The path to save the combined CSV file.
         Returns:
             None
     """
 
-    # List of all dataframes in the data directory
+    # Empty list for all dataframes in the data directory
     all_dfs = []
 
     # Loop through the files in the data directory
-    for filename in os.listdir(data_dir):
+    for filename in os.listdir(data_directory):
         # Check if the file is a CSV file
         if filename.endswith(".csv"):
             # Grab the year and side from the filename and clean the data
             try:
                 year = int(filename.split("_")[0])
                 side = filename.split("_")[1].split(".")[0]
-                filepath = os.path.join(data_dir, filename)
+                filepath = os.path.join(data_directory, filename)
                 df = clean_data(filepath, year, side)
                 all_dfs.append(df)
             # If the file is not valid, print an error message
